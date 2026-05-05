@@ -1,5 +1,5 @@
-import {TouchableOpacity, View} from "react-native";
-import {IStyledComponent} from "styled-components";
+import {Button, TouchableOpacity, View} from "react-native";
+import { Text } from 'react-native'
 
 export const VIEW_ORDER = {
     ALL: 'all',
@@ -10,9 +10,10 @@ export const VIEW_ORDER = {
 type ToggleBottomType = {
     onPress: (value: typeof VIEW_ORDER[keyof typeof VIEW_ORDER]) => void;
     type: typeof VIEW_ORDER[keyof typeof VIEW_ORDER];
+    onPressAggregation: () => {};
 }
 
-const ToggleBottom = ({ onPress, type }: ToggleBottomType) => {
+const ToggleBottom = ({ onPress, type, onPressAggregation }: ToggleBottomType) => {
     const onPressHandler = () => {
         if (type === VIEW_ORDER.ALL) {
             onPress(VIEW_ORDER.BID)
@@ -25,6 +26,10 @@ const ToggleBottom = ({ onPress, type }: ToggleBottomType) => {
         }
     }
 
+    const onPressAggregationHandler = () => {
+
+    }
+
     return (
         <View style={{
             display: 'flex',
@@ -35,7 +40,12 @@ const ToggleBottom = ({ onPress, type }: ToggleBottomType) => {
             marginBottom: 20,
         }}>
             <View style={{ width: '80%'}}>
-
+                {/*THESE MUST BE REFACTOR TO A DROPDOWN ELEMENT*/}
+                <Button
+                    onPress={onPressAggregation}
+                    title="Agregation"
+                    color="#841584"
+                />
             </View>
             <TouchableOpacity style={{ height: 70, width: '20%' }} onPress={onPressHandler}>
                 { type === VIEW_ORDER.ALL ? (
