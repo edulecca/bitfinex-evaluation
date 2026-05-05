@@ -10,6 +10,13 @@ import OrderBookRow from "@/components/order-book/OrderBookRow";
 import ToggleBottom, { VIEW_ORDER } from "@/components/order-book/ToggleBottom";
 import {useLocalSearchParams} from "expo-router";
 
+const AGREGATION = {
+    P0: 'P0',
+    P1: 'P1',
+    P2: 'P2',
+    P3: 'P3',
+    P4: 'P4',
+}
 
 const BookTopContainer = styled.View`
     display: flex;
@@ -35,7 +42,8 @@ const MidPrice = styled.Text`
 export default function TabTwoScreen() {
     const [view, setView] = useState<typeof VIEW_ORDER[keyof typeof VIEW_ORDER]>(VIEW_ORDER.ALL);
     const { symbol } = useLocalSearchParams<{ symbol: string }>();
-    const { data: responseData } = useOrderBook(symbol, 'P0');
+    const [agregation, setAgregation] = useState<typeof AGREGATION[keyof typeof AGREGATION]>(AGREGATION.P0)
+    const { data: responseData } = useOrderBook(symbol, agregation);
 
     const data = useMemo(() => {
         if (view === VIEW_ORDER.ALL) {
@@ -92,7 +100,7 @@ export default function TabTwoScreen() {
                     </OrderContainer>
                 </ThemedView>
             </ScrollView>
-            <ToggleBottom onPress={setView} type={view} />
+            <ToggleBottom onPress={setView} type={view} onPressAggregation={setAgregation} />
         </View>
     );
 }

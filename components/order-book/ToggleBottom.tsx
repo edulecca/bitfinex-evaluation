@@ -1,5 +1,5 @@
-import {Button, TouchableOpacity, View} from "react-native";
-import { Text } from 'react-native'
+import { TouchableOpacity, View} from "react-native";
+import {Dropdown} from "react-native-element-dropdown";
 
 export const VIEW_ORDER = {
     ALL: 'all',
@@ -26,10 +26,6 @@ const ToggleBottom = ({ onPress, type, onPressAggregation }: ToggleBottomType) =
         }
     }
 
-    const onPressAggregationHandler = () => {
-
-    }
-
     return (
         <View style={{
             display: 'flex',
@@ -40,11 +36,17 @@ const ToggleBottom = ({ onPress, type, onPressAggregation }: ToggleBottomType) =
             marginBottom: 20,
         }}>
             <View style={{ width: '80%'}}>
-                {/*THESE MUST BE REFACTOR TO A DROPDOWN ELEMENT*/}
-                <Button
-                    onPress={onPressAggregation}
-                    title="Agregation"
-                    color="#841584"
+                <Dropdown
+                    data={[
+                        { label: 'P0', value: 'P0' },
+                        { label: 'P1', value: 'P1' },
+                        { label: 'P2', value: 'P2' },
+                        { label: 'P3', value: 'P3' },
+                        { label: 'P4', value: 'P4' },
+                    ]}
+                    labelField="label"
+                    valueField="value"
+                    onChange={(item) => onPressAggregation(item.value)}
                 />
             </View>
             <TouchableOpacity style={{ height: 70, width: '20%' }} onPress={onPressHandler}>
