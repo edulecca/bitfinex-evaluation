@@ -57,7 +57,7 @@ export default function TabTwoScreen() {
     const maxBidOrders: number = useMemo(() => getMaxOrderCount(data.bidOrders), [getMaxOrderCount, data.askOrders]);
     const maxAskOrders: number = useMemo(() => getMaxOrderCount(data.askOrders), [getMaxOrderCount, data.askOrders]);
 
-    const midPrice = (data.bidOrders[data.bidOrders.length - 1]?.price || 0 + data.askOrders[0]?.price || 0) /2;
+    const midPrice = ((data.bidOrders[data.bidOrders.length - 1]?.price || 0) + data.askOrders[0]?.price || 0) /2;
 
     const showBidOrders = view === VIEW_ORDER.ALL || view === VIEW_ORDER.BID;
     const showAskOrders = view === VIEW_ORDER.ALL || view === VIEW_ORDER.ASK;
